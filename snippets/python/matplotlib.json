@@ -1,0 +1,17 @@
+{
+  "Make gridspec figure": {
+    "prefix": "plt:grid",
+    "description": "initialize a figure with gridspec axes",
+    "body": "fig = plt.figure(constrained_layout=True)\nG = fig.add_gridspec(nrows=${1:1},ncols=${2:2})\n$0"
+  },
+  "Add gridspec subplot": {
+    "prefix": "plt:grid-subplot",
+    "description": "add a subplot to gridspec",
+    "body": "${1:ax} = fig.add_subplot(${2:G[0,0]},title={$3:title})\n$0"
+  },
+  "Save and show figure": {
+    "prefix": "plt:save",
+    "description": "List comprehension for creating a list based on existing lists",
+    "body": "plt.savefig(${1:figure.svg})\nplt.show()\n$0"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "science-snippets",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": "python",
+        "path": "./snippets/python/matplotlib.json"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/python/pytorch.json"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/python/ssqueezepy.json"
+      },
+      {
+        "language": "json",
+        "path": "./snippets/json/snippet.json"
+      }
+    ]
+  }
+}

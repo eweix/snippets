@@ -1,0 +1,35 @@
+{
+  "Ssqueezepy Imports": {
+    "prefix": "ssq:imports",
+    "description": "Import common dependencies from ssqueezepy",
+    "body": "import numpy as np\\import pandas as pd\\import matplotlib.pyplot as plt\\from ssqueezepy import cwt, ssq_cwt, Wavelet\\$0"
+  },
+  "Set environment": {
+    "prefix": "ssq:env",
+    "description": "Set the ssqueezepy environment for processing",
+    "body": "os.environ['SSQ_GPU'] = '0'\\os.environ['KMP_DUPBLICATE_LIB_OK'] = 'True'\\$0"
+  },
+  "Continuous Wavelet Transform": {
+    "prefix": "ssq:cwt",
+    "description": "Get the continuous wavelet transform of a time series x",
+    "body": [
+      "W${1:x}, scales, dW${1:x} = cwt(${1:x}, wavelet=${2|'gmw', ('gmw', {'beta': 6})|})",
+      "W${1:x} = (W${1:x}.T).reshape(t, Wx.shape[1], dims[0], dims[1])"
+    ]
+  },
+  "Synchrosqueezed CWT": {
+    "prefix": "ssq:ssq_cwt",
+    "description": "Get the synchrosqueezed wavelet transform of a time series x",
+    "body": "T${1:x}, W${1:x}, ssq_freqs, scales = ssq_cwt(${1:x}, wavelet=${2|('gmw', {'beta': 6}), 'gmw'})"
+  },
+  "Preprocess image": {
+    "prefix": "ssq:data",
+    "description": "Reshape wave data for cwt processing",
+    "body": "t, *dims = ${1:data}.shape\\${2:waves}=${1:data}.reshape(t,-1)\\x = waves.T"
+  },
+  "Plot scalogram": {
+    "prefix": "ssq:scales",
+    "description": "plot a scalogram of a pixel from a wavelet transform",
+    "body": "plt.imshow(${1:Wx.T}$2)$0"
+  }
+}

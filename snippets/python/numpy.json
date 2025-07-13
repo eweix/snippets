@@ -1,0 +1,7 @@
+{
+  "Localize array": {
+    "prefix": "np:localize",
+    "description": "Operate on parts of a numpy array that meet a condition",
+    "body": "np.where(${2:condition}, ${1:x}, ${3:y})"
+  }
+}
