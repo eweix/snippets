@@ -2,12 +2,22 @@
   "Ssqueezepy Imports": {
     "prefix": "ssq:imports",
     "description": "Import common dependencies from ssqueezepy",
-    "body": "import numpy as np\\import pandas as pd\\import matplotlib.pyplot as plt\\from ssqueezepy import cwt, ssq_cwt, Wavelet\\$0"
+    "body": [
+      "import numpy as np",
+      "import pandas as pd",
+      "import matplotlib.pyplot as plt",
+      "from ssqueezepy import cwt, ssq_cwt, Wavelet",
+      "$0"
+    ]
   },
   "Set environment": {
     "prefix": "ssq:env",
     "description": "Set the ssqueezepy environment for processing",
-    "body": "os.environ['SSQ_GPU'] = '0'\\os.environ['KMP_DUPBLICATE_LIB_OK'] = 'True'\\$0"
+    "body": [
+      "os.environ[\"SSQ_GPU\"] = \"0\"",
+      "os.environ[\"KMP_DUPBLICATE_LIB_OK\"] = \"True\"",
+      "$0"
+    ]
   },
   "Continuous Wavelet Transform": {
     "prefix": "ssq:cwt",
@@ -25,7 +35,11 @@
   "Preprocess image": {
     "prefix": "ssq:data",
     "description": "Reshape wave data for cwt processing",
-    "body": "t, *dims = ${1:data}.shape\\${2:waves}=${1:data}.reshape(t,-1)\\x = waves.T"
+    "body": [
+      "t, *dims = ${1:data}.shape",
+      "${2:waves}=${1:data}.reshape(t,-1)",
+      "x = waves.T"
+    ]
   },
   "Plot scalogram": {
     "prefix": "ssq:scales",

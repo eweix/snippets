@@ -1,7 +1,35 @@
 {
-  "Localize array": {
-    "prefix": "np:localize",
-    "description": "Operate on parts of a numpy array that meet a condition",
-    "body": "np.where(${2:condition}, ${1:x}, ${3:y})"
+  "Arange": {
+    "prefix": "np:arange",
+    "description": "Make a numpy array over a range",
+    "body": "np.arange(${1:0},${2:100},${3:1})$0"
+  },
+  "Zeros": {
+    "prefix": "np:zeros",
+    "description": "Initialize an array of zeros",
+    "body": "np.zeros((${1:shape}))$0"
+  },
+  "Random": {
+    "prefix": "np:randn",
+    "description": "Initialize an array with random values",
+    "body": "np.rand((${1:shape}))$0"
+  },
+
+  "Einsum": {
+    "prefix": "np:einsum",
+    "description": "Perform an einsum over an array",
+    "body": ""
+  },
+
+  "Masked where": {
+    "prefix": ["np:mask:where", "np:where:mask"],
+    "description": "Mask a numpy array",
+    "body": "${3:masked_array} = np.ma.masked_where(${2:condition}, ${1:array})$0"
+  },
+
+  "Mean along 2 dimensions": {
+    "prefix": "np:mean:2d",
+    "description": "Get the mean of a numpy dataframe along multiple axes",
+    "body": "${3:mean} = ${1:array}.mean(axis=(${2:1,2}))$0"
   }
 }

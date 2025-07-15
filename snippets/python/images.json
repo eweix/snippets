@@ -1,0 +1,22 @@
+{
+  "Load an image": {
+    "prefix": "im:load",
+    "description": "Load an image from a tiff",
+    "body": ["f = Path(\"${1:path}\").expanduser()", "tifffile.imread(f)"]
+  },
+  "Save an image": {
+    "prefix": "im:save",
+    "description": "Save an image to a tiff file",
+    "body": "tifffile.imwrite(\"${2:path}\", ${1:image})"
+  },
+  "Return selected masked pixels": {
+    "prefix": "im:mask:selected",
+    "description": "Take an image stored as a numpy array and set all pixels not selected by a particular mask value to zero",
+    "body": "${2:masked} = np.ma.masked_where(${1:mask} != 0, 0)"
+  },
+  "Return all masked pixels": {
+    "prefix": "im:mask:all",
+    "description": "Take an image stored as a numpy array and set all unmasked pixels to zero",
+    "body": "${2:masked} = np.ma.masked_where(${1:mask} == 0, ${1:mask})"
+  }
+}

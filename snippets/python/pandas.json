@@ -1,0 +1,89 @@
+{
+  "Save dataframe": {
+    "prefix": "pd:save",
+    "description": "Save a pandas dataframe to a csv file without an index column",
+    "body": "pd.to_csv(\"${1:path}\", index_col=False)"
+  },
+
+  "Read dataframe": {
+    "prefix": "pd:read",
+    "description": "Read a pandas dataframe to a csv file without an index column",
+    "body": "pd_read_csv(\"${1:path}\", index_col=False)"
+  },
+
+  "Convert column to numeric": {
+    "prefix": "pd:col:numeric",
+    "description": "Convert a pandas series datatype to numeric, changing non-numeric values to NaN",
+    "body": "pd.to_numeric(${1:df}[\"${2:Column Name}\"], errors=\"coerce\")"
+  },
+
+  "Get matching rows": {
+    "prefix": ["pd:match:specific", "pd:match:rows"],
+    "description": "Grab dataframe rows where column = specific value",
+    "body": "${4:df_s} = ${1:df}.loc[${1:df}[\"${2:column}\"] == \"${3:value}\"]"
+  },
+
+  "Describe dataframe": {
+    "prefix": ["pd:describe", "pd:stats"],
+    "description": "Get the description of listed columns in the dataframe",
+    "body": "${1:df}[[\"${2:column1}\", \"${3:column2}\"]]"
+  },
+  "Replace values": {
+    "prefix": "pd:val:replace",
+    "description": "Replace specific values in a dataframe with new ones",
+    "body": "${1:df}.replace(${2:0},${3:np.NaN})"
+  },
+  "N Largest Values": {
+    "prefix": "pd:val:nlargest",
+    "body": "${1:df}.nlargest(${2:NumOfValues},'${3:ColumnName}')",
+    "description": "Select the N largest values from a column in a dataframe."
+  },
+  "N Smallest Values": {
+    "prefix": "pd:val:nsmallest",
+    "body": "${1:df}.nsmallest(${2:NumOfValues},'${3:ColumnName}')",
+    "description": "Select the N smallest values from a column in a dataframe."
+  },
+
+  "Create pivot table": {
+    "prefix": "pd:pivot",
+    "description": "Create a pivot table, which aggregates values of one column along different columns",
+    "body": "${4:new_df} = pd.pivot_table(${1:df}, values=\"${2:valueColumn}\", columns=[${3:columnsToGroupBy}])"
+  },
+
+  "Group by with count": {
+    "prefix": "pd:groupby:count",
+    "description": "Group by a set of columns, and then count the number of occurrences of a value in another column within those groups",
+    "body": "${4:newDf} = ${1:df}.groupby(\"${2:displayColumn}\")[\"${3:aggregatedColumn}\"].count()"
+  },
+  "Group By with Mean": {
+    "prefix": "pd:groupby:mean",
+    "description": "Group By with Mean Aggregate.",
+    "body": "${4:newDf} = ${1:df}.groupby(\"${2:displayColumn}\")[\"${3:aggregatedColumn}\"].mean()"
+  },
+
+  "Apply Function Single Column": {
+    "prefix": "pd:apply:single",
+    "description": "Apply function to single column.",
+    "body": [
+      "def ${3}(x):",
+      "\treturn ${4:x*x}",
+      "",
+      "${1:df}[\"${2:ColumnName}\"] = ${1:df}[\"${2}\"].apply(${3:yourFunction})"
+    ]
+  },
+  "Apply Function Multiple Columns": {
+    "prefix": "pd:apply:multiple",
+    "description": "Apply function to multiple columns.",
+    "body": [
+      "def ${3}(x):",
+      "\treturn x*x",
+      "",
+      "${1:df}[[${2:Columns}] = ${1:df}[[${2}]].apply(${3:yourFunction})"
+    ]
+  },
+  "Apply Column Lambda": {
+    "prefix": "pd:apply:lambda",
+    "description": "Apply inline function/lambda to a column.",
+    "body": "${1:df}[\"${2:ColumnOne}\"] = ${1:df}[\"${2}\"].apply(lambda x: ${3:x*x})$0"
+  }
+}

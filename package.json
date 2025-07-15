@@ -1,7 +1,12 @@
 {
-  "name": "science-snippets",
+  "name": "snippets",
+  "version": "0.1.1",
   "engines": {
     "vscode": "^1.11.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eweix/snippets"
   },
   "contributes": {
     "snippets": [
@@ -11,11 +16,31 @@
       },
       {
         "language": "python",
+        "path": "./snippets/python/numpy.json"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/python/pandas.json"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/python/opencv.json"
+      },
+      {
+        "language": "python",
         "path": "./snippets/python/pytorch.json"
       },
       {
         "language": "python",
+        "path": "./snippets/python/images.json"
+      },
+      {
+        "language": "python",
         "path": "./snippets/python/ssqueezepy.json"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/python/cellpose.json"
       },
       {
         "language": "json",

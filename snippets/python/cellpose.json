@@ -1,0 +1,40 @@
+{
+  "Import Cellpose dependencies": {
+    "prefix": "cellpose:imports",
+    "description": "Import the main libraries used in cellpose segmentation",
+    "body": [
+      "from cellpose import io, models",
+      "from pathlib import Path",
+      "import matplotlib.pyplot as plt",
+      "import numpy as np",
+      "import tifffile",
+      "import ssqueezepy",
+      "from itertools import product\n\n",
+      "Model = models.CellposeModel(gpu=True)"
+    ]
+  },
+  "Generate static mask via Cellpose": {
+    "prefix": "cellpose:mask",
+    "description": "Input an image, then generate masks using cellpose",
+    "body": "masks, flows, style = ${1:Model}.eval(${2:image}, cellprob_threshold=${3:0.4})"
+  },
+  "Generate time-series mask via Cellpose": {
+    "prefix": "cellpose:mask:timeseries",
+    "description": "Convert a TYX image into a list of length T of 2D YX images, then generate masks using cellpose and collapse masks back into a new image of TYX",
+    "body": [
+      "${2:image_list} = list(${1:image})",
+      "masks, flows, style = ${3:Model}.eval(${2:image_list}, cellprob_threshold=${4:0.4})"
+    ]
+  },
+  "Get individual cell masks": {
+    "prefix": "cellpose:mask:cells",
+    "description": "Get the number of unique cells in a mask, then generate individual masks on a per-cell basis",
+    "body": [
+      "num_cells = np.unique(${1:mask})",
+      "for cell in num_cells:",
+      "\tcell_mask = np.ma.masked_where(${1:mask} != cell, 0)",
+      "\tmasked = np.where(cell_mask != cell, ${2:image}, ${1:mask})",
+      "\ttifffile.imwrite(f\"masks/{cell}.tiff\", masked)"
+    ]
+  }
+}

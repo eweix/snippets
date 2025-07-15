@@ -7,7 +7,7 @@
       "\t\"prefix\": \"${2:prefix}\",",
       "\t\"description\": \"${3:description}\",",
       "\t\"body\":\"${4:body}\"",
-      "}"
+      "},"
     ]
   }
 }
