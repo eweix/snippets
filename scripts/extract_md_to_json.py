@@ -4,8 +4,6 @@ Extract snippets from markdown files to JSON format.
 """
 
 import json
-import re
-import sys
 from pathlib import Path
 
 def md_to_json(md_path: Path) -> dict:
@@ -36,17 +34,19 @@ def md_to_json(md_path: Path) -> dict:
             current_description = None
             current_prefix = None
             current_body_lines = []
-
-        elif line.strip() == "```python":
-            in_code_block = True
-
-        elif line.strip() == "```" and in_code_block:
             in_code_block = False
 
-        elif in_code_block and line.startswith("# "):
-            current_prefix = line[2:].strip()
+        elif line.strip().startswith("<!--") and line.strip().endswith("-->"):
+            prefix_str = line.strip()[4:-3].strip()
+            current_prefix = prefix_str.split("|")
 
-        elif in_code_block and line.strip() and not line.startswith("#"):
+        elif line.strip().startswith("```"):
+            in_code_block = True
+
+        elif in_code_block and line.strip() == "```":
+            in_code_block = False
+
+        elif in_code_block:
             current_body_lines.append(line)
 
         elif current_description is None and line.strip():
@@ -65,7 +65,7 @@ def md_to_json(md_path: Path) -> dict:
     return data
 
 def main():
-    docs_dir = Path("docs")
+    docs_dir = Path("sources/python")
     json_dir = Path("snippets/python")
 
     for md_file in sorted(docs_dir.glob("*.md")):
