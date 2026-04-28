@@ -3,11 +3,12 @@ library: snippet
 language: json
 ---
 
-# snippet
+# Snippets
 
 ## Snippet template
 
-Create a vscode-like snippet in json
+Create a vscode-like snippet in json.
+Takes in prefix, description, and body fields.
 
 <!-- js-snippet|snip -->
 
