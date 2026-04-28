@@ -9,7 +9,7 @@ language: python
 
 Make a numpy array over a range
 
-<!-- np:arange -->
+<!-- np-arange -->
 
 ```python
 np.arange(${1:0},${2:100},${3:1})$0
@@ -19,7 +19,7 @@ np.arange(${1:0},${2:100},${3:1})$0
 
 Initialize an array of zeros
 
-<!-- np:zeros -->
+<!-- np-zeros -->
 
 ```python
 np.zeros((${1:shape}))$0
@@ -29,7 +29,7 @@ np.zeros((${1:shape}))$0
 
 Initialize an array with random values
 
-<!-- np:randn -->
+<!-- np-randn -->
 
 ```python
 np.rand((${1:shape}))$0
@@ -39,7 +39,7 @@ np.rand((${1:shape}))$0
 
 Perform an einsum over an array
 
-<!-- np:einsum -->
+<!-- np-einsum -->
 
 ```python
 
@@ -49,7 +49,7 @@ Perform an einsum over an array
 
 Mask a numpy array
 
-<!-- np:mask:where|np:where:mask -->
+<!-- np-mask-where|np-where-mask -->
 
 ```python
 ${3:masked_array} = np.ma.masked_where(${2:condition}, ${1:array})$0
@@ -59,7 +59,7 @@ ${3:masked_array} = np.ma.masked_where(${2:condition}, ${1:array})$0
 
 Get the mean of a numpy dataframe along multiple axes
 
-<!-- np:mean:2d -->
+<!-- np-mean-2d -->
 
 ```python
 ${3:mean} = ${1:array}.mean(axis=(${2:1,2}))$0

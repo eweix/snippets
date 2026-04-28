@@ -9,7 +9,7 @@ language: python
 
 Common pytorch imports
 
-<!-- pytorch:imports -->
+<!-- pytorch-imports -->
 
 ```python
 import torch
@@ -22,7 +22,7 @@ import torch.optim as optim
 
 Check the available device
 
-<!-- pytorch:device -->
+<!-- pytorch-device -->
 
 ```python
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'mps' if torch.mps.is_available() else 'cpu')
@@ -32,7 +32,7 @@ device = torch.device('cuda:0' if torch.cuda.is_available() else 'mps' if torch.
 
 Select an optimizer
 
-<!-- pytorch:optimizer -->
+<!-- pytorch-optimizer -->
 
 ```python
 optimizer = torch.optim.${1|Adadelta,Adagrad,Adam,SparseAdam,Adamax,ASGD,LBFGS,RMSprop,Rprop,SGD|}(${2:net}.parameters(), lr=${3:1e-2})
@@ -42,7 +42,7 @@ optimizer = torch.optim.${1|Adadelta,Adagrad,Adam,SparseAdam,Adamax,ASGD,LBFGS,R
 
 Select a scheduler method to adjust the learning rate
 
-<!-- pytorch:scheduler -->
+<!-- pytorch-scheduler -->
 
 ```python
 scheduler = torch.optim.lr_scheduler.${1|LambdaLR,StepLR,MultiStepLR,ExponentialLR,CosineAnnealingLR,ReduceLROnPlateau,CyclicLR|}(${2:optimizer})
@@ -52,7 +52,7 @@ scheduler = torch.optim.lr_scheduler.${1|LambdaLR,StepLR,MultiStepLR,Exponential
 
 Template for a custom dataset
 
-<!-- pytorch:dataset -->
+<!-- pytorch-dataset -->
 
 ```python
 class ${1:MyDataset}(torch.utils.data.Dataset):
@@ -71,7 +71,7 @@ class ${1:MyDataset}(torch.utils.data.Dataset):
 
 Template for a dataloader
 
-<!-- pytorch:dataloader -->
+<!-- pytorch-dataloader -->
 
 ```python
 dataloader = torch.utils.data.DataLoader(${1:dataset}, batch_size=${2:1}, shuffle=${3|False,True|})
@@ -81,7 +81,7 @@ dataloader = torch.utils.data.DataLoader(${1:dataset}, batch_size=${2:1}, shuffl
 
 Select a loss function for classification provided by pytorch
 
-<!-- pytorch:loss_class -->
+<!-- pytorch-loss_class -->
 
 ```python
 criterion = nn.${1|CrossEntropyLoss,NLLLoss,PoissonNLLLoss,BCELoss,BCEWithLogitsLoss,MarginRankingLoss,HingeEmbeddingLoss,MultiLabelMarginLoss,SoftMarginLoss,MultiLabelSoftMarginLoss,CosineEmbeddingLoss,MultiMarginLoss,TripletMarginLoss,CTCLoss|}()
@@ -91,7 +91,7 @@ criterion = nn.${1|CrossEntropyLoss,NLLLoss,PoissonNLLLoss,BCELoss,BCEWithLogits
 
 Select a loss function for regression provided by pytorch
 
-<!-- pytorch:loss_reg -->
+<!-- pytorch-loss_reg -->
 
 ```python
 criterion = nn.${1|L1Loss,MSELoss,KLDivLoss,SmoothL1Loss|}()
@@ -101,7 +101,7 @@ criterion = nn.${1|L1Loss,MSELoss,KLDivLoss,SmoothL1Loss|}()
 
 Creates a custom class template which inherits from torch.nn.Module
 
-<!-- pytorch:module -->
+<!-- pytorch-module -->
 
 ```python
 class ${1:MyModule}(nn.Module):
@@ -118,7 +118,7 @@ class ${1:MyModule}(nn.Module):
 
 Stores modules or parameters in some kind of container
 
-<!-- pytorch:container -->
+<!-- pytorch-container -->
 
 ```python
 layers = nn.${1|Sequential,ModuleList,ModuleDict,ParameterList,ParameterDict|}($2)
@@ -128,7 +128,7 @@ layers = nn.${1|Sequential,ModuleList,ModuleDict,ParameterList,ParameterDict|}($
 
 Creates a custom autograd function template which inherits from torch.autograd.Function
 
-<!-- pytorch:function -->
+<!-- pytorch-function -->
 
 ```python
 class ${1:MyFunction}(torch.autograd.Function):
@@ -149,7 +149,7 @@ class ${1:MyFunction}(torch.autograd.Function):
 
 Creates an initializer function and applies it to the given neural network
 
-<!-- pytorch:init -->
+<!-- pytorch-init -->
 
 ```python
 def init_weights(m):
@@ -189,7 +189,7 @@ ${15:net}.apply(init_weights)
 
 Example for creating a simple training loop
 
-<!-- pytorch:train -->
+<!-- pytorch-train -->
 
 ```python
 # loop over the dataset multiple times
@@ -219,7 +219,7 @@ print('Finished Training')
 
 
 
-<!-- pytorch:checkpoint -->
+<!-- pytorch-checkpoint -->
 
 ```python
 ${1:model}.load_state_dict(${2|'path/to/model',torch.hub.load_state_dict_from_url('url')|})
@@ -229,7 +229,7 @@ ${1:model}.load_state_dict(${2|'path/to/model',torch.hub.load_state_dict_from_ur
 
 
 
-<!-- pytorch:github -->
+<!-- pytorch-github -->
 
 ```python
 ${1:model} = torch.hub.load(github=${2:'pytorch/vision'}, model=${3:'resnet50'}, pretrained=${4|False,True|})
@@ -239,7 +239,7 @@ ${1:model} = torch.hub.load(github=${2:'pytorch/vision'}, model=${3:'resnet50'},
 
 
 
-<!-- pytorch:freeze -->
+<!-- pytorch-freeze -->
 
 ```python
 for params in ${1:net}.parameters():
@@ -250,7 +250,7 @@ for params in ${1:net}.parameters():
 
 
 
-<!-- pytorch:sampler -->
+<!-- pytorch-sampler -->
 
 ```python
 sampler = torch.utils.data.${1|Sampler(data_source),SequantialSample(data_source),RandomSampler(data_source),SubsetRandomSampler(indicies),WeightedRandomSampler(weights\, num_samples),BatchSampler(sampler\, batch_size\, drop_last),distributed.DistributedSampler(dataset)|}
@@ -260,7 +260,7 @@ sampler = torch.utils.data.${1|Sampler(data_source),SequantialSample(data_source
 
 
 
-<!-- pytorch:unfreeze -->
+<!-- pytorch-unfreeze -->
 
 ```python
 for params in ${1:net}.parameters():
@@ -271,7 +271,7 @@ for params in ${1:net}.parameters():
 
 Adds a non-linear activation
 
-<!-- pytorch:layer:activation -->
+<!-- pytorch-layer-activation -->
 
 ```python
 ${1:nonlin} = nn.${2|ELU(alpha=1.\, inplace=False),Hardshrink(lambd=0.5),Hardtanh(min_val=-1\, max_val=1\, inplace=False\, min_value=None\, max_value=None),LeakyReLU(negative_slope=0.01\, inplace=False),LogSigmoid,PReLU(num_parameters=1\, init=0.25),ReLU(inplace=False),ReLU6(inplace=False),RReLU(lower=0.125\, upper=0.3333333333333333\, inplace=False),CELU(alpha=1.0\, inplace=False),SELU(inplace=False),Sigmoid,Softplus(beta=1\, threshold=20),Softshrink(lambd=0.5),Softsign,Tanh,Tanhshrink,Threshold(threshold\, value\, inplace=False),Softmin(dim=None),Softmax(dim=None),Softmax2d,LogSoftmax(dim=None),AdaptiveLogSoftmaxWithLogits(in_features\, n_classes\, cutoffs\, div_value=4.0\, head_bias=True)|}
@@ -281,7 +281,7 @@ ${1:nonlin} = nn.${2|ELU(alpha=1.\, inplace=False),Hardshrink(lambd=0.5),Hardtan
 
 Adds an attention layer
 
-<!-- pytorch:layer:attention -->
+<!-- pytorch-layer-attention -->
 
 ```python
 ${1:mutli_attention} = nn.MultiheadAttention(embed_dim=$2, num_heads=$3)
@@ -291,7 +291,7 @@ ${1:mutli_attention} = nn.MultiheadAttention(embed_dim=$2, num_heads=$3)
 
 Creates a convolutional layer
 
-<!-- pytorch:layer:conv -->
+<!-- pytorch-layer-conv -->
 
 ```python
 ${1:conv} = nn.${2|Conv1d(in_channel\, out_channel\, groups=1\, bias=True\, ,Conv2d(in_channel\, out_channel\, groups=1\, bias=True\, ,Conv3d(in_channel\, out_channel\, groups=1\, bias=True\, ,ConvTranspose1d(in_channel\, out_channel\, groups=1\, bias=True\, out_padding=0\, dilation=1\, ,ConvTranspose2d/in_channel\, out_channel\, groups=1\, bias=True\, out_padding=0\, dilation=1\, ,ConvTranspose3d(in_channel\, out_channel\, groups=1\, bias=True\, out_padding=0\, dilation=1\, ,Unfold(dilation=1\, ,Fold(output_size\, |}kernel_size=2, padding=0, stride=1)
@@ -301,7 +301,7 @@ ${1:conv} = nn.${2|Conv1d(in_channel\, out_channel\, groups=1\, bias=True\, ,Con
 
 Creates a pooling layer
 
-<!-- pytorch:layer:pooling -->
+<!-- pytorch-layer-pooling -->
 
 ```python
 ${1:pool} = nn.${2|MaxPool1d(kernel_size\, stride=None\, padding=0\, dilation=1\, return_indices=False\, ceil_mode=False),MaxPool2d(kernel_size\, stride=None\, padding=0\, dilation=1\, return_indices=False\, ceil_mode=False),MaxPool3d(kernel_size\, stride=None\, padding=0\, dilation=1\, return_indices=False\, ceil_mode=False),MaxUnpool1d(kernel_size\, stride=None\, padding=0),MaxUnpool2d(kernel_size\, stride=None\, padding=0),MaxUnpool3d(kernel_size\, stride=None\, padding=0),AvgPool1d(kernel_size\, stride=None\, padding=0\, ceil_mode=False\, count_include_pad=True),AvgPool2d(kernel_size\, stride=None\, padding=0\, ceil_mode=False\, count_include_pad=True),AvgPool3d(kernel_size\, stride=None\, padding=0\, ceil_mode=False\, count_include_pad=True),FractionalMaxPool2d(kernel_size\, output_size=None\, output_ratio=None\, return_indices=False\, random_samples=None),LPPool1d(norm_type\, kernel_size\, stride=None\, ceil_mode=False),LPPool2d(norm_type\, kernel_size\, stride=None\, ceil_mode=False),AdaptiveMaxPool1d(output_size\, return_indices=False),AdaptiveMaxPool2d(output_size\, return_indices=False),AdaptiveMaxPool3d(output_size\, return_indices=False),AdaptiveAvgPool1d(output_size),AdaptiveAvgPool2d(output_size),AdaptiveAvgPool3d(output_size)|}
@@ -311,7 +311,7 @@ ${1:pool} = nn.${2|MaxPool1d(kernel_size\, stride=None\, padding=0\, dilation=1\
 
 Creates a padding layer
 
-<!-- pytorch:layer:padding -->
+<!-- pytorch-layer-padding -->
 
 ```python
 ${1:padding} = nn.${2|ReflectionPad1d(,ReflectionPad2d(,ReplicationPad1d(,ReplicationPad2d(,ReplicationPad3d(,ZeroPad2d(,ConstantPad1d(value=3.5\, ,ConstantPad2d(value=3.5\, ,ConstantPad3d(value=3.5\, |}padding=${3:(2,2)}
@@ -331,7 +331,7 @@ ${1:recurrent} = nn.${2|RNN,LSTM,GRU,RNNCell,LSTMCell,GRUCell|}(${3:input_size},
 
 Creates a normalization layer
 
-<!-- pytorch:layer:norm -->
+<!-- pytorch-layer-norm -->
 
 ```python
 ${1:norm} = nn.${2|BatchNorm1d(num_features\, eps=1e-5\, momentum=0.1\, affine=True\, track_running_stats=True),BatchNorm2d(num_features\, eps=1e-5\, momentum=0.1\, affine=True\, track_running_stats=True),BatchNorm3d(num_features\, eps=1e-5\, momentum=0.1\, affine=True\, track_running_stats=True),GroupNorm(num_groups\, num_channels\, eps=1e-5\, affine=True),SyncBatchNorm(num_features\, eps=1e-05\, momentum=0.1\, affine=True),InstanceNorm1d(num_features\, eps=1e-5\, momentum=0.1\, affine=False\, track_running_stats=False),InstanceNorm2d(num_features\, eps=1e-5\, momentum=0.1\, affine=False\, track_running_stats=False),InstanceNorm3d(num_features\, eps=1e-5\, momentum=0.1\, affine=False\, track_running_stats=False),LayerNorm(normalized_shape\, eps=1e-5\, elementwise_affine=True),LocalResponseNorm(size\, alpha=1e-4\, beta=0.75\, k=1)|}
@@ -341,7 +341,7 @@ ${1:norm} = nn.${2|BatchNorm1d(num_features\, eps=1e-5\, momentum=0.1\, affine=T
 
 Creates a linear layer
 
-<!-- pytorch:layer:linear -->
+<!-- pytorch-layer-linear -->
 
 ```python
 ${1:linear} = nn.${2|Identity(,Linear(in_feature\, ,Bilinear(in_features1\, in_features2\, |}out_features, bias=True)
@@ -351,7 +351,7 @@ ${1:linear} = nn.${2|Identity(,Linear(in_feature\, ,Bilinear(in_features1\, in_f
 
 Adds dropout
 
-<!-- pytorch:layer:dropout -->
+<!-- pytorch-layer-dropout -->
 
 ```python
 ${1:drop} = nn.${2|Dropout,Dropout2d,Dropout3d,AlphaDropout|}(p=${3:0.5}, inplace=${4|False,True|})
@@ -361,7 +361,7 @@ ${1:drop} = nn.${2|Dropout,Dropout2d,Dropout3d,AlphaDropout|}(p=${3:0.5}, inplac
 
 Creates a sparse layer
 
-<!-- pytorch:layer:sparse -->
+<!-- pytorch-layer-sparse -->
 
 ```python
 ${1:sparse} = nn.${2|Embedding,EmbeddingBag|}(${3:num_embeddings}, ${4:embedding_dim})
@@ -371,7 +371,7 @@ ${1:sparse} = nn.${2|Embedding,EmbeddingBag|}(${3:num_embeddings}, ${4:embedding
 
 Creates a vision layer
 
-<!-- pytorch:layer:vision -->
+<!-- pytorch-layer-vision -->
 
 ```python
 ${1:vision} = nn.${2|PixelShuffle(upscale_factor),Upsample(size=None\, scale_factor=None\, mode='nearest'\, align_corners=None),UpsamplingNearest2d(size=None\, scale_factor=None),UpsamplingBilinear2d(size=None\, scale_factor=None)|}
@@ -381,7 +381,7 @@ ${1:vision} = nn.${2|PixelShuffle(upscale_factor),Upsample(size=None\, scale_fac
 
 Creates a distance layer
 
-<!-- pytorch:layer:distance -->
+<!-- pytorch-layer-distance -->
 
 ```python
 ${1:distance} = nn.${2|CosineSimilarity,PairwiseDistance|}()
@@ -391,7 +391,7 @@ ${1:distance} = nn.${2|CosineSimilarity,PairwiseDistance|}()
 
 Applies a nonlinearity function
 
-<!-- pytorch:F:activation -->
+<!-- pytorch-F-activation -->
 
 ```python
 F.${1|threshold(input\, threshold\, value\, inplace=False),relu(input\, inplace=False),relu6(input\, inplace=False),hardtanh(input\, min_val=-1.\, max_val=1.\, inplace=False),elu(input\, alpha=1.0\, inplace=False),selu(input\, inplace=False),celu(input\, alpha=1.\, inplace=False),leaky_relu(input\, negative_slope=0.01\, inplace=False),prelu(input\, weight),rrelu(input\, lower=1./8\, upper=1./3\, training=False\, inplace=False),glu(input\, dim=-1),logsigmoid(input),hardshrink(input\, lambd=0.5),tanhshrink(input),softsign(input),softplus(input\, beta=1\, threshold=20),softmin(input\, dim=None\, _stacklevel=3),softmax(input\, dim=None\, _stacklevel=3),softshrink(input\, lambd=0.5),gumbel_softmax(logits\, tau=1\, hard=False\, eps=1e-10),log_softmax(input\, dim=None\, _stacklevel=3),tanh(input),sigmoid(input)|}
@@ -401,7 +401,7 @@ F.${1|threshold(input\, threshold\, value\, inplace=False),relu(input\, inplace=
 
 Applies a convolution function
 
-<!-- pytorch:F:conv -->
+<!-- pytorch-F-conv -->
 
 ```python
 F.${1|conv1d,conv2d,conv3d,conv_transpose1d,conv_transpose2d,conv_transpose3d|}(${2:input}, ${3:weight}, bias=None, stride=1, padding=0)
@@ -411,7 +411,7 @@ F.${1|conv1d,conv2d,conv3d,conv_transpose1d,conv_transpose2d,conv_transpose3d|}(
 
 Applies a pooling function
 
-<!-- pytorch:F:pooling -->
+<!-- pytorch-F-pooling -->
 
 ```python
 F.${1|avg_pool1d(input\, kernel_size\, stride=None\, padding=0),avg_pool2d(input\, kernel_size\, stride=None\, padding=0),avg_pool3d(input\, kernel_size\, stride=None\, padding=0),max_pool1d(input\, kernel_size\, stride=None\, padding=0),max_pool2d(input\, kernel_size\, stride=None\, padding=0,max_pool3d(input\, kernel_size\, stride=None\, padding=0),max_unpool1d(input\, indices\, kernel_size\, stride=None\, padding=0),max_unpool2d(input\, indices\, kernel_size\, stride=None\, padding=0),max_unpool3d(input\, indices\, kernel_size\, stride=None\, padding=0),lp_pool1d(input\, norm_type\, kernel_size\, stride=None),lp_pool2d(input\, norm_type\, kernel_size\, stride=None),adaptive_max_pool1d(input\, output_size),adaptive_max_pool2d(input\, output_size),adaptive_max_pool3d(input\, output_size),adaptive_avg_pool1d(input\, output_size),adaptive_avg_pool2d(input\, output_size),adaptive_avg_pool3d(input\, output_size)|}
@@ -421,7 +421,7 @@ F.${1|avg_pool1d(input\, kernel_size\, stride=None\, padding=0),avg_pool2d(input
 
 Applies a normalization function
 
-<!-- pytorch:F:norm -->
+<!-- pytorch-F-norm -->
 
 ```python
 F.${1|batch_norm(input\, running_mean\, running_var),instance_norm(input\, running_mean=None\, running_var=None),layer_norm(input\, normalized_shape),local_response_norm(input\, size),normalize(input)|}
@@ -431,7 +431,7 @@ F.${1|batch_norm(input\, running_mean\, running_var),instance_norm(input\, runni
 
 Applies a linear function
 
-<!-- pytorch:F:linear -->
+<!-- pytorch-F-linear -->
 
 ```python
 F.${1|linear(input\, weight),bilinear(input1\, input2\, weight)|}
@@ -441,7 +441,7 @@ F.${1|linear(input\, weight),bilinear(input1\, input2\, weight)|}
 
 Applies a dropout function
 
-<!-- pytorch:F:dropout -->
+<!-- pytorch-F-dropout -->
 
 ```python
 F.${1|dropout,dropout2d,dropout3d,alpha_dropout|}(${2:input}, p=${3:0.5})
@@ -451,7 +451,7 @@ F.${1|dropout,dropout2d,dropout3d,alpha_dropout|}(${2:input}, p=${3:0.5})
 
 Applies an embedding function
 
-<!-- pytorch:F:sparse -->
+<!-- pytorch-F-sparse -->
 
 ```python
 F.${1|embedding,embedding_bag|}(${2:input}, ${3:weight})
@@ -461,7 +461,7 @@ F.${1|embedding,embedding_bag|}(${2:input}, ${3:weight})
 
 Applies an one hot encoding function
 
-<!-- pytorch:F:one_hot -->
+<!-- pytorch-F-one_hot -->
 
 ```python
 F.one_hot(${1:tensor}, num_classes=${2:0})
@@ -471,7 +471,7 @@ F.one_hot(${1:tensor}, num_classes=${2:0})
 
 Applies a distance function
 
-<!-- pytorch:F:distance -->
+<!-- pytorch-F-distance -->
 
 ```python
 F.${1|pairwise_distance,cosine_similarity|}(${2:x1}, ${3:x2})
@@ -481,7 +481,7 @@ F.${1|pairwise_distance,cosine_similarity|}(${2:x1}, ${3:x2})
 
 Applies a vision function
 
-<!-- pytorch:F:vision -->
+<!-- pytorch-F-vision -->
 
 ```python
 F.${1|pixel_shuffle(input\, upscale_factor),pad(input\, pad),interpolate(input\, size=None\, scale_factor=None\, mode='nearest'\, align_corners=None),grid_sample(input\, grid),affine_grid(theta\, size)|}
@@ -491,7 +491,7 @@ F.${1|pixel_shuffle(input\, upscale_factor),pad(input\, pad),interpolate(input\,
 
 Applies a loss function
 
-<!-- pytorch:F:loss -->
+<!-- pytorch-F-loss -->
 
 ```python
 F.${1|cross_entropy,binary_cross_entropy,binary_cross_entropy_with_logits,poisson_nll_loss,hinge_embedding_loss,kl_div,l1_loss,smooth_l1_loss,mse_loss,multilabel_margin_loss,multilabel_soft_margin_loss,multi_margin_loss,nll_loss,soft_margin_loss|}(${2:input}, ${3:target})
@@ -501,7 +501,7 @@ F.${1|cross_entropy,binary_cross_entropy,binary_cross_entropy_with_logits,poisso
 
 Creates a Resnet basic block
 
-<!-- pytorch:layer:resnet:block -->
+<!-- pytorch-layer-resnet-block -->
 
 ```python
 class BasicBlock(nn.Module):
@@ -530,7 +530,7 @@ class BasicBlock(nn.Module):
 
 Creates a Resnet bottleneck block
 
-<!-- pytorch:layer:resnet:bottleneck -->
+<!-- pytorch-layer-resnet-bottleneck -->
 
 ```python
 class Bottleneck(nn.Module):
@@ -564,7 +564,7 @@ class Bottleneck(nn.Module):
 
 Imagenet code example
 
-<!-- pytorch:examples:imagenet -->
+<!-- pytorch-examples-imagenet -->
 
 ```python
 import argparse
@@ -993,7 +993,7 @@ if __name__ == '__main__':
 
 Mnist code example
 
-<!-- pytorch:examples:mnist -->
+<!-- pytorch-examples-mnist -->
 
 ```python
 from __future__ import print_function
@@ -1118,7 +1118,7 @@ if __name__ == '__main__':
 
 VPG code example
 
-<!-- pytorch:examples:vpg -->
+<!-- pytorch-examples-vpg -->
 
 ```python
 import argparse
@@ -1234,7 +1234,7 @@ if __name__ == '__main__':
 
 Actor-Critic code example
 
-<!-- pytorch:examples:ac -->
+<!-- pytorch-examples-ac -->
 
 ```python
 import argparse
@@ -1427,7 +1427,7 @@ if __name__ == '__main__':
 
 DCGAN code example
 
-<!-- pytorch:examples:dcgan -->
+<!-- pytorch-examples-dcgan -->
 
 ```python
 from __future__ import print_function
@@ -1699,7 +1699,7 @@ for epoch in range(opt.niter):
 
 Variational autoencoder code example
 
-<!-- pytorch:examples:vae -->
+<!-- pytorch-examples-vae -->
 
 ```python
 from __future__ import print_function

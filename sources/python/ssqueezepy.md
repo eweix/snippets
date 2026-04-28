@@ -9,7 +9,7 @@ language: python
 
 Import common dependencies from ssqueezepy
 
-<!-- ssq:imports -->
+<!-- ssq-imports -->
 
 ```python
 import numpy as np
@@ -23,7 +23,7 @@ $0
 
 Set the ssqueezepy environment for processing
 
-<!-- ssq:env -->
+<!-- ssq-env -->
 
 ```python
 os.environ["SSQ_GPU"] = "0"
@@ -35,7 +35,7 @@ $0
 
 Get the continuous wavelet transform of a time series x
 
-<!-- ssq:cwt -->
+<!-- ssq-cwt -->
 
 ```python
 W${1:x}, scales, dW${1:x} = cwt(${1:x}, wavelet=${2|'gmw', ('gmw', {'beta': 6})|})
@@ -46,7 +46,7 @@ W${1:x} = (W${1:x}.T).reshape(t, Wx.shape[1], dims[0], dims[1])
 
 Get the synchrosqueezed wavelet transform of a time series x
 
-<!-- ssq:ssq_cwt -->
+<!-- ssq-scwt -->
 
 ```python
 T${1:x}, W${1:x}, ssq_freqs, scales = ssq_cwt(${1:x}, wavelet=${2|('gmw', {'beta': 6}), 'gmw'})
@@ -56,7 +56,7 @@ T${1:x}, W${1:x}, ssq_freqs, scales = ssq_cwt(${1:x}, wavelet=${2|('gmw', {'beta
 
 Reshape wave data for cwt processing
 
-<!-- ssq:data -->
+<!-- ssq-data -->
 
 ```python
 t, *dims = ${1:data}.shape
@@ -68,7 +68,7 @@ x = waves.T
 
 plot a scalogram of a pixel from a wavelet transform
 
-<!-- ssq:scales -->
+<!-- ssq-scales -->
 
 ```python
 plt.imshow(${1:Wx.T}$2)$0

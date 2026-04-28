@@ -9,7 +9,7 @@ language: python
 
 Load an image from a tiff
 
-<!-- im:load -->
+<!-- im-load -->
 
 ```python
 f = Path("${1:path}").expanduser()
@@ -20,7 +20,7 @@ tifffile.imread(f)
 
 Save an image to a tiff file
 
-<!-- im:save -->
+<!-- im-save -->
 
 ```python
 tifffile.imwrite("${2:path}", ${1:image})
@@ -30,7 +30,7 @@ tifffile.imwrite("${2:path}", ${1:image})
 
 Take an image stored as a numpy array and set all pixels not selected by a particular mask value to zero
 
-<!-- im:mask:selected -->
+<!-- im-mask-sel -->
 
 ```python
 ${2:masked} = np.ma.masked_where(${1:mask} != 0, 0)
@@ -40,7 +40,7 @@ ${2:masked} = np.ma.masked_where(${1:mask} != 0, 0)
 
 Take an image stored as a numpy array and set all unmasked pixels to zero
 
-<!-- im:mask:all -->
+<!-- im-mask-all -->
 
 ```python
 ${2:masked} = np.ma.masked_where(${1:mask} == 0, ${1:mask})

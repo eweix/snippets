@@ -9,7 +9,7 @@ language: python
 
 Initialize a figure with layout settings applied
 
-<!-- plt:fig -->
+<!-- plt-fig -->
 
 ```python
 fig = plt.figure(constrained_layout=True, tight_layout=True)
@@ -19,7 +19,7 @@ fig = plt.figure(constrained_layout=True, tight_layout=True)
 
 initialize a figure with gridspec axes
 
-<!-- plt:grid -->
+<!-- plt-grid -->
 
 ```python
 fig = plt.figure(constrained_layout=True)
@@ -31,7 +31,7 @@ $0
 
 add a subplot to gridspec
 
-<!-- plt:grid:subplot -->
+<!-- plt-grid-sub -->
 
 ```python
 ${1:ax} = fig.add_subplot(${2:G[0,0]},title={$3:title})
@@ -42,7 +42,7 @@ $0
 
 Save the current plot to a figure
 
-<!-- plt:save -->
+<!-- plt-save -->
 
 ```python
 plt.savefig("${1:figure.svg}")$0
@@ -52,7 +52,7 @@ plt.savefig("${1:figure.svg}")$0
 
 Define a keyword dictionary that can be used to remove tickmarks from axes
 
-<!-- plt:style:noticks -->
+<!-- plt-style-noticks -->
 
 ```python
 ticks = dict(which=both,bottom=False,left=False,labelbottom=False,labelleft=False)
@@ -62,7 +62,7 @@ ticks = dict(which=both,bottom=False,left=False,labelbottom=False,labelleft=Fals
 
 Twin the current axis to allow for plotting two types of data concurrently
 
-<!-- plt:ax:twin -->
+<!-- plt-ax-twin -->
 
 ```python
 ${1:ax2} = ${2:ax1}.twin${3:x}()$0
@@ -72,7 +72,7 @@ ${1:ax2} = ${2:ax1}.twin${3:x}()$0
 
 Display an image in matplotlib, without axes
 
-<!-- plt:image -->
+<!-- plt-image -->
 
 ```python
 ${3:ax}.imshow(${1:image}, cmap="${2:viridis}")
@@ -83,7 +83,7 @@ ${3:ax}.axis(False)
 
 Make the outline of a matplotlib stylesheet that can be saved, shared, and reused. Use this to make a good, consistent style system!
 
-<!-- plt:style:sheet -->
+<!-- plt-style-sheet -->
 
 ```python
 import matplotlib as mpl

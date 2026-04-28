@@ -9,7 +9,7 @@ language: json
 
 Create a vscode-like snippet in json
 
-<!-- json:snippet -->
+<!-- js-snippet|snip -->
 
 ```json
 "${1:Snippet}": {

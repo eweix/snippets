@@ -9,7 +9,7 @@ language: python
 
 Import the main libraries used in cellpose segmentation
 
-<!-- cellpose:imports -->
+<!-- cellpose-import|cp-import|import cellpose -->
 
 ```python
 from cellpose import io, models
@@ -28,7 +28,7 @@ Model = models.CellposeModel(gpu=True)
 
 Input an image, then generate masks using cellpose
 
-<!-- cellpose:mask -->
+<!-- cellpose-mask|cp-m -->
 
 ```python
 masks, flows, style = ${1:Model}.eval(${2:image}, cellprob_threshold=${3:0.4})
@@ -38,7 +38,7 @@ masks, flows, style = ${1:Model}.eval(${2:image}, cellprob_threshold=${3:0.4})
 
 Convert a TYX image into a list of length T of 2D YX images, then generate masks using cellpose and collapse masks back into a new image of TYX
 
-<!-- cellpose:mask:timeseries -->
+<!-- cellpose-mask-time|cp-mt -->
 
 ```python
 ${2:image_list} = list(${1:image})
@@ -47,14 +47,15 @@ masks, flows, style = ${3:Model}.eval(${2:image_list}, cellprob_threshold=${4:0.
 
 ## Get individual cell masks
 
-Get the number of unique cells in a mask, then generate individual masks on a per-cell basis
+Get the number of unique cells in a mask, then generate individual masks on a per-cell basis.
+Saves output masks as tiffs, but a little editing gives other filetype options.
 
-<!-- cellpose:mask:cells -->
+<!-- cellpose-get-masks|cp-get-masks -->
 
 ```python
 num_cells = np.unique(${1:mask})
 for cell in num_cells:
 	cell_mask = np.ma.masked_where(${1:mask} != cell, 0)
 	masked = np.where(cell_mask != cell, ${2:image}, ${1:mask})
-	tifffile.imwrite(f"masks/{cell}.tiff", masked)
+	tifffile.imwrite(f"masks/{cell}.tif", masked)
 ```
