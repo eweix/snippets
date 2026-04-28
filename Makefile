@@ -1,6 +1,9 @@
-.PHONY: all
+.PHONY: all zed-extension
 
 all: package.json
+
+zed-extension: package.json
+	python3 scripts/generate_zed_extension.py
 
 clean:
 	rm -rf snippets
