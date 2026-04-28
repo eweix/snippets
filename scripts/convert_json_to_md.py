@@ -60,7 +60,7 @@ def json_to_markdown(json_path: Path) -> str:
 
 def main():
     json_dir = Path("snippets")
-    docs_dir = Path("docs")
+    docs_dir = Path("sources")
     docs_dir.mkdir(exist_ok=True)
 
     for json_file in sorted(json_dir.glob("*/*.json")):
