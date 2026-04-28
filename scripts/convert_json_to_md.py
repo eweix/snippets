@@ -38,7 +38,7 @@ def json_to_markdown(json_path: Path) -> str:
         if isinstance(body, list):
             code_body = body
         else:
-            code_body = body
+            code_body = [body]
 
         lines.append(f"## {snippet_name}")
         lines.append("")
