@@ -66,7 +66,8 @@ def main():
     for json_file in sorted(json_dir.glob("*/*.json")):
         print(f"Converting {json_file.name}...")
         md_content = json_to_markdown(json_file)
-        md_file = docs_dir / json_file.name.replace(".json", ".md")
+        lang = os.path.basename(os.path.dirname(json_file))
+        md_file = docs_dir / lang / json_file.name.replace(".json", ".md")
         md_file.write_text(md_content)
         print(f"  -> {md_file.name}")
 
