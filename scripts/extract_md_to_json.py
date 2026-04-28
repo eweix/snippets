@@ -41,10 +41,6 @@ def md_to_json(md_path: Path) -> dict:
             current_body_lines = []
             in_code_block = False
 
-        elif line.strip().startswith("<!--") and line.strip().endswith("-->"):
-            prefix_str = line.strip()[4:-3].strip()
-            current_prefix = prefix_str.split("|")
-
         elif in_code_block and line.strip() == "```":
             in_code_block = False
 
@@ -56,6 +52,10 @@ def md_to_json(md_path: Path) -> dict:
 
         elif current_description is None and line.strip():
             current_description = line.strip()
+
+        elif line.strip().startswith("<!--") and line.strip().endswith("-->"):
+            prefix_str = line.strip()[4:-3].strip()
+            current_prefix = prefix_str.split("|")
 
         i += 1
 

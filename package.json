@@ -1,6 +1,6 @@
 {
   "name": "snippets",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "engines": {
     "vscode": "^1.11.0"
   },
@@ -15,8 +15,20 @@
         "path": "./snippets/json/snippet.json"
       },
       {
+        "language": "markdown",
+        "path": "./snippets/markdown/blocks.json"
+      },
+      {
         "language": "python",
         "path": "./snippets/python/cellpose.json"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/python/chemiinformatics.json"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/python/cli.json"
       },
       {
         "language": "python",
