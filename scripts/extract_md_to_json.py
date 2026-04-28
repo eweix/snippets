@@ -24,7 +24,7 @@ def md_to_json(md_path: Path) -> dict:
     while i < len(lines):
         line = lines[i]
 
-        if line.startswith("## "):
+        if line.startswith("## ") and in_code_block is False:
             if current_snippet and current_prefix is not None:
                 body = (
                     "\n".join(current_body_lines).strip() if current_body_lines else ""
@@ -45,11 +45,11 @@ def md_to_json(md_path: Path) -> dict:
             prefix_str = line.strip()[4:-3].strip()
             current_prefix = prefix_str.split("|")
 
-        elif line.strip().startswith("```"):
-            in_code_block = True
-
         elif in_code_block and line.strip() == "```":
             in_code_block = False
+
+        elif line.strip().startswith("```"):
+            in_code_block = True
 
         elif in_code_block:
             current_body_lines.append(line)
@@ -100,4 +100,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

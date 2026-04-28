@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-import json
 import glob
+import json
 import os
+
 
 def main():
     script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -12,16 +13,8 @@ def main():
 
     snippet_entries = []
     for path in sorted(snippets):
-        if "python" in path:
-            lang = "python"
-        elif "json" in path:
-            lang = "json"
-        else:
-            lang = "plaintext"
-        snippet_entries.append({
-            "language": lang,
-            "path": f"./{path}"
-        })
+        lang = os.path.basename(os.path.dirname(path))
+        snippet_entries.append({"language": lang, "path": f"./{path}"})
 
     package_path = os.path.join(parent_dir, "package.json")
     with open(package_path, "r") as f:
@@ -35,5 +28,7 @@ def main():
 
     print(f"Updated package.json with {len(snippet_entries)} snippet entries")
 
+
 if __name__ == "__main__":
     main()
+
