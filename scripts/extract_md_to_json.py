@@ -3,8 +3,11 @@
 Extract snippets from markdown files to JSON format.
 """
 
+import argparse
 import json
+import os
 from pathlib import Path
+
 
 def md_to_json(md_path: Path) -> dict:
     content = md_path.read_text()
@@ -23,11 +26,13 @@ def md_to_json(md_path: Path) -> dict:
 
         if line.startswith("## "):
             if current_snippet and current_prefix is not None:
-                body = "\n".join(current_body_lines).strip() if current_body_lines else ""
+                body = (
+                    "\n".join(current_body_lines).strip() if current_body_lines else ""
+                )
                 data[current_snippet] = {
                     "prefix": current_prefix,
                     "description": current_description or "",
-                    "body": body
+                    "body": body,
                 }
 
             current_snippet = line[3:].strip()
@@ -59,26 +64,40 @@ def md_to_json(md_path: Path) -> dict:
         data[current_snippet] = {
             "prefix": current_prefix,
             "description": current_description or "",
-            "body": body
+            "body": body,
         }
 
     return data
 
+
 def main():
-    docs_dir = Path("sources/python")
-    json_dir = Path("snippets/python")
+    parser = argparse.ArgumentParser(
+        description="Extract snippets from markdown to JSON"
+    )
+    parser.add_argument("file", type=Path, help="Path to markdown file")
+    args = parser.parse_args()
 
-    for md_file in sorted(docs_dir.glob("*.md")):
-        print(f"Extracting {md_file.name}...")
-        snippets = md_to_json(md_file)
-        json_file = json_dir / md_file.name.replace(".md", ".json")
+    lang = os.path.basename(os.path.dirname(args.file))
+    os.makedirs(os.path.join("snippets", lang), exist_ok=True)
 
-        with open(json_file, "w") as f:
-            json.dump(snippets, f, indent=2)
+    md_file = args.file
+    if not md_file.is_file():
+        print(f"Error: {md_file} is not a file")
+        return
 
-        print(f"  -> {json_file.name}")
+    # print(f"Extracting {md_file.name}...")
+    snippets = md_to_json(md_file)
 
-    print("Done!")
+    json_dir = Path("snippets")
+    json_file = json_dir / lang / md_file.name.replace(".md", ".json")
+
+    with open(json_file, "w") as f:
+        json.dump(snippets, f, indent=2)
+
+    # print(f"  -> {json_file.name}")
+    # print("Done!")
+
 
 if __name__ == "__main__":
     main()
+
