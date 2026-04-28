@@ -124,6 +124,20 @@ Stores modules or parameters in some kind of container
 layers = nn.${1|Sequential,ModuleList,ModuleDict,ParameterList,ParameterDict|}($2)
 ```
 
+## Fully Connected Block
+
+Create a fully connected linear layer for a neural network.
+Includes regularization and dropout normalization.
+
+<!-- pytorch-fc|nn-fc -->
+
+```python
+nn.Linear(${in},${out},bias=False),
+nn.ReLU(),
+nn.Dropout(),
+$0
+```
+
 ## PyTorch Autograd Function
 
 Creates a custom autograd function template which inherits from torch.autograd.Function

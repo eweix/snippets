@@ -11,6 +11,18 @@
   "contributes": {
     "snippets": [
       {
+        "language": "json",
+        "path": "./snippets/json/snippet.json"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/python/cellpose.json"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/python/images.json"
+      },
+      {
         "language": "python",
         "path": "./snippets/python/matplotlib.json"
       },
@@ -20,11 +32,11 @@
       },
       {
         "language": "python",
-        "path": "./snippets/python/pandas.json"
+        "path": "./snippets/python/opencv.json"
       },
       {
         "language": "python",
-        "path": "./snippets/python/opencv.json"
+        "path": "./snippets/python/pandas.json"
       },
       {
         "language": "python",
@@ -32,19 +44,7 @@
       },
       {
         "language": "python",
-        "path": "./snippets/python/images.json"
-      },
-      {
-        "language": "python",
         "path": "./snippets/python/ssqueezepy.json"
-      },
-      {
-        "language": "python",
-        "path": "./snippets/python/cellpose.json"
-      },
-      {
-        "language": "json",
-        "path": "./snippets/json/snippet.json"
       }
     ]
   }
