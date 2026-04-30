@@ -7,29 +7,41 @@ language: python
 
 ## Simple Thresholding
 
-In this Simple Thresholding - For every pixel, the same threshold value is applied. If the pixel value is smaller than the threshold, it is set to 0, otherwise, it is set to a maximum value.
+In simple thresholding, the same threshold value is applied to every pixel.
+If the pixel value is smaller than the threshold, it is set to 0, otherwise, it is set to a maximum value.
+
+The thresholding technique can be any of the following:
+* cv2.THRESH_BINARY
+* cv2.THRESH_BINARY_INV
+* cv2.THRESH_TRUNC
+* cv2.THRESH_TOZERO
+* cv2.THRESH_TOZERO_INV
 
 <!-- cv-thresh-simple -->
 
 ```python
 ret, threshimg = cv2.threshold(${1:image}, ${2:thresholdValue}, ${3:maxVal}, cv2.${4:thresholdingTechnique})
-# Thresholding Technique - cv2.THRESH_BINARY,cv2.THRESH_BINARY_INV,cv2.THRESH_TRUNC,cv2.THRESH_TOZERO,cv2.THRESH_TOZERO_INV etc
 ```
 
 ## Adaptive Thresholding
 
-In Adaptive thresholding, the threshold value is calculated for smaller regions. This leads to different threshold values for different regions with respect to the change in lighting and thus gives better results.
+In adaptive thresholding, the threshold value is calculated for smaller regions. 
+This leads to different threshold values for different regions with respect to the change in lighting and thus gives better results.
+
+The adaptive method can be any of the following:
+* cv2.ADAPTIVE_THRESH_MEAN_C
+* cv2.ADAPTIVE_THRESH_GAUSSIAN_C
 
 <!-- cv-thresh-adaptive|cv-adaptive -->
 
 ```python
 threshimg = cv2.adaptiveThreshold(${1:img}, ${2:maxVal}, cv2.${3:adaptiveMethod}, cv2.${4:thresholdType}, ${5:blockSize}, ${6:constant})
-# Adaptive Method -  cv2.ADAPTIVE_THRESH_MEAN_C, cv2.ADAPTIVE_THRESH_GAUSSIAN_C
 ```
 
 ## Dilation
 
-Mainly used with binary images to remove the noise from them. It makes the object in white bigger.
+Mainly used with binary images to remove the noise from them.
+It makes the object in white bigger.
 
 <!-- cv-trans-dilate|cv-dilate -->
 
@@ -40,7 +52,8 @@ dilatedimg = cv2.dilate(${2:image},kernel,iterations = ${3:number})
 
 ## Erosion
 
-Mainly used with binary images to remove the noise from them. It makes the object in white smaller.
+Mainly used with binary images to remove the noise from them.
+It makes the object in white smaller.
 
 <!-- cv-trans-erode|cv-erode -->
 
