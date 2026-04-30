@@ -64,3 +64,13 @@ Get the mean of a numpy dataframe along multiple axes
 ```python
 ${3:mean} = ${1:array}.mean(axis=(${2:1,2}))$0
 ```
+
+## Mesh grid 2D
+
+Create a 2D mesh grid based on a set of bounds.
+
+<!-- np-mesh-2d|np-grid -->
+
+```python
+${1:xx}, ${2:yy} = np.mgrid[${3:0}:${4:10}:${5:100},${6:0}:${7:10}:${8:100}]$0
+```
