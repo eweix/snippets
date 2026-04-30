@@ -79,6 +79,27 @@ ${3:ax}.imshow(${1:image}, cmap="${2:viridis}")
 ${3:ax}.axis(False)
 ```
 
+## Iterate over axes
+
+Iterate the same type of plot over a set of axes.
+Useful for plotting statistical moments or other variations on the same data.
+
+<!-- plt-iter-ax -->
+
+```python
+def ${1:make_plot}(ax, ${2:x}, ${3:y}):
+		ax.${4:plot|scatter}(${2:x}, ${3:y})
+        ax.set_xlabel("${5:xlabel}")
+        ax.set_ylabel("${6:ylabel}")
+        ax.set_title("${7:title}")
+    
+    fig, axes = plt.subplots(ncols=${8:1}, nrows=1, figsize=${9:(18, 4)})
+
+    for ax, d in zip(axes, ${10:iterable}):
+        plot_scatter(df, *d)
+
+```
+
 ## Define matplotlib stylesheet
 
 Make the outline of a matplotlib stylesheet that can be saved, shared, and reused. Use this to make a good, consistent style system!
