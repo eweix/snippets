@@ -33,10 +33,6 @@
       },
       {
         "language": "python",
-        "path": "./snippets/python/ex.json"
-      },
-      {
-        "language": "python",
         "path": "./snippets/python/images.json"
       },
       {
@@ -54,6 +50,10 @@
       {
         "language": "python",
         "path": "./snippets/python/pandas.json"
+      },
+      {
+        "language": "python",
+        "path": "./snippets/python/plotly.json"
       },
       {
         "language": "python",
