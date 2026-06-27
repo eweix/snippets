@@ -49,7 +49,7 @@ Get the synchrosqueezed wavelet transform of a time series x
 <!-- ssq-scwt -->
 
 ```python
-T${1:x}, W${1:x}, ssq_freqs, scales = ssq_cwt(${1:x}, wavelet=${2|('gmw', {'beta': 6}), 'gmw'})
+T${1:x}, W${1:x}, ssq_freqs, scales = ssq_cwt(${1:x}, wavelet=${2:('gmw', {'beta': 6}), 'gmw'})
 ```
 
 ## Preprocess image
@@ -61,7 +61,7 @@ Reshape wave data for cwt processing
 ```python
 t, *dims = ${1:data}.shape
 ${2:waves}=${1:data}.reshape(t,-1)
-x = waves.T
+x = ${2:waves}.T
 ```
 
 ## Plot scalogram
